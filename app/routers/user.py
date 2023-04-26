@@ -8,7 +8,7 @@ router = APIRouter(
     prefix='/user'
 )
 
-@router.post('/signup/')
+@router.post('/signup/', status_code=status.HTTP_201_CREATED)
 async def create_user(user:schemas.UserCreate, db:Session=Depends(database.get_db)):
     hashed_password = generate_password_hash(user.password)
     user.password = hashed_password
